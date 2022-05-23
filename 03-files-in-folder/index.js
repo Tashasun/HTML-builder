@@ -9,7 +9,7 @@ fs.readdir(path.resolve(__dirname, 'secret-folder'), { withFileTypes: true }, (e
         files.forEach(file => {
             let result = ""
             if (file.isFile()) {
-                const result = file.name.split('.')[0] + ' - '+`${path.extname(`${file.name}`).split('.')[1]}`;
+                const result = file.name.split('.')[0] + ' - '+path.extname(file.name).split('.')[1];
 
                 const fileName = path.resolve(__dirname, 'secret-folder', file.name)
 
