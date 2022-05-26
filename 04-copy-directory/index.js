@@ -1,13 +1,21 @@
 const fs = require('fs');
 const path = require('path');
 
-new Promise((resolve, reject) => {
-  fs.mkdir(path.resolve(__dirname, 'files-copy'), { recursive: true }, err => {
-    if (err) reject(err);
-    console.log('create dir ');
-    resolve();
+new Promise((resolve, reject) =>{fs.rm(path.resolve(__dirname, 'files-copy'), {force:true, recursive:true}, (err) =>{
+  if (err) reject (err);
+  {resolve ();
+    console.log('clean dir');}
+});
+
+}).then (
+  () => { return new Promise((resolve, reject) => {
+    fs.mkdir(path.resolve(__dirname, 'files-copy'), { recursive: true }, err => {
+      if (err) reject(err);
+      console.log('create dir ');
+      resolve();
+    });
   });
-}).then(
+  }).then(
   () => {
     return new Promise((resolve, reject) => {
       fs.readdir(path.resolve(__dirname, 'files'), (err, files) => {
